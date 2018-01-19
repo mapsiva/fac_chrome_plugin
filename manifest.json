@@ -1,0 +1,23 @@
+{
+  "name": "AdAnalyst",
+  "version": "0.0.0.23",
+  "manifest_version": 2,
+  "description": "A tool to help you understand how you are targeted by advertisers on Facebook",
+  "browser_action": {
+    "browser_style": true,
+    "default_icon": "enabled.png",
+      "default_popup":"popup.html"
+  },
+  "background": {
+    "scripts": ["sha3.js","jquery-3.1.1.min.js","adCollectionUtils.js","background.js"]
+  },
+  "icons": {
+     "16": "enabled.png",
+     "48": "enabled.png"
+  },
+      "content_security_policy": "script-src 'self' 'unsafe-eval' https://connect.facebook.net; object-src 'self'",     
+"content_scripts": [{"run_at": "document_end", "js": ["jquery-3.1.1.min.js","loading.js","adCollectionUtils.js","adgrabber.js"], "matches": ["http://www.facebook.com/*","https://www.facebook.com/*"]},{"run_at": "document_start", "js": ["preferencesGrabber.js"], "matches": ["http://www.facebook.com/ads/preferences*","https://www.facebook.com/ads/preferences*"]}],
+  "permissions": ["http://www.facebook.com/*","https://www.facebook.com/*", "webRequest", "webRequestBlocking", "storage","http://adanalyst.app-ns.mpi-sws.org/*","http://adanalyst.mpi-sws.org/*"],
+  "incognito": "spanning",
+ "web_accessible_resources": [ "xhrOverloadPreferences.js","xhrOverloadButtons.js" ]
+}

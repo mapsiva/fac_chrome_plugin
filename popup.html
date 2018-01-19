@@ -1,0 +1,130 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>AdAnalyst</title>
+  <meta name="description" content="AdAnalyst">
+  <meta name="author" content="AdAnalyst">
+<script src="jquery-3.1.1.min.js" ></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src='popup.js'> 
+      
+    </script>
+    <style>
+    body {
+    min-width:500px;
+        color:#5E5E5F;
+}
+    </style>
+</head>
+
+<body>
+        <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+
+    <script type="text/javascript" src="popup.js"></script>
+
+    
+    <div class="container">
+  <h1><img src="enabled.png" alt="logo" height=50/>  AdAnalyst   </h1>
+        <div id="normalView">
+            <ul class="list-group">
+
+
+                  <li class="list-group-item"><a href="http://adanalyst.mpi-sws.org/view_data_about_me" target="_blank"> 
+                    Data
+                      </a></li>
+            
+                                
+                  <li class="list-group-item"><a href="http://adanalyst.mpi-sws.org/view_advertisers" target="_blank"> 
+               Advertisers
+                </a></li>
+                                                
+                                                                  <li class="list-group-item"><a href="http://adanalyst.mpi-sws.org/view_all_ads" target="_blank"> 
+                Ads
+                </a></li>
+                
+                <li class="list-group-item"><a href="http://adanalyst.mpi-sws.org/contact_us" target="_blank"> 
+                Contact Us
+                </a></li>
+            
+            
+            </ul>
+            <div class="checkbox">
+            <label><input type="checkbox" checked id="collectPrefs">Collect Preferences</label>
+            </div>
+            
+          
+        </div>
+        
+        <div id="notLoggedInView">
+            <div class="alert alert-danger">
+                <strong>Note!</strong> If you have not logged in Facebook, AdAnalyst is not working. If you are already logged in please wait for a few moments...
+            </div>
+        </div>
+                <div id="consentForm" class="jumbotron">
+
+
+<div class="row">
+
+<small >
+    We would like to invite you to participate in our study, which revolves around the evaluation of the transparency of the Facebook ad ecosystem, as well as the level of control it provides to the users.
+</small>
+         </div>
+  
+  <div class="row">
+  <small>We are asking you to participate in this study because you have a Facebook account. Your decision to participate in this research project is voluntary. You do not have to participate and you can refuse to participate. Even if you start using our application, you can opt out at any time.
+</small>
+         </div>
+
+      <div class="row">
+
+      <small>The risk to you, as a participant, is minimal.  We are going to collect your Facebok id, the ads you receive, the explanations that Facebook provides to you, and periodically, your ad preferences page (<a href="https://www.facebook.com/ads/preferences">https://www.facebook.com/ads/preferences</a>). Moreover, we might target you with some ads, and consequently, collect their explanations.
+</small> 
+         </div>
+
+       <div class="row">
+ 
+       <small>We will keep this data on a private research server, and no one other than active research team members will be able to view the data. The primary risk here is that you may not wish to make such data public (for example, you may not wish others to know what ads you are receiving). We will therefore anonymize all of your data after the project is completed, and will only archive anonymized data; we will delete all the non-anonymized data once the experiment is done. All personally identifiable information (names, Facebook IDs, email addresses) will not be recoverable from our anonymized data.
+</small>
+        </div>
+                    
+                    
+                           <div class="row">
+ 
+       <small>                    If you have any questions regarding electronic privacy, please feel free to contact Mark Nardone, IT Security Analyst via phone at 617-373-7901, or via email at <a href="privacy@neu.edu">privacy@neu.edu</a>. If you have any questions about this study, please feel free to contact Alan Mislove, <a href="amislove@ccs.neu.edu">amislove@ccs.neu.edu</a>, the person mainly responsible for the research. If you have any questions regarding your rights as a research participant, please contact Nan C. Regina, Director, Human Subject Research Protection, 960 Renaissance Park, Northeastern University, Boston, MA 02115. Tel: 617.373.7570, Email: <a href='irb@neu.edu'>irb@neu.edu</a>. You may call anonymously if you wish.
+
+</small>
+        </div>
+                    
+
+
+       <div class="row ">
+  
+    <small>By clicking the Accept button below, you are indicating that you consent to participate in this study. If you do not consent, simply close this window.</small>
+       </div>
+                   <div class="row">
+
+    <div class="col-md-12 text-center"> 
+    <button type="button" class="btn btn-primary btn-lg" id="consentButton"> <span class="glyphicon glyphicon-ok"></span> Accept</button>
+            </div>
+            </div>
+        
+        </div>
+<!--        <a href="https://www.facebook.com/v2.9/dialog/oauth?client_id=769242713247780&redirect_uri=https://www.facebook.com/connect/login_success.html&response_type=code%20token" target="_blank"> Fb login</a>-->
+<!--
+        <fb:login-button 
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
+-->
+        </div>
+
+    
+
+</body>
+</html>
