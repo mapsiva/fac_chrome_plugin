@@ -66,16 +66,31 @@ function getDem() {
 }
 
 
+//function getBeh() {
+//    var txt = 'behaviors":'
+//    var script = getScriptWithData(txt);
+//    if (script ==-1 ) 
+//        {return -1}
+//    var pos = script.innerHTML.nthIndexOf(txt,2);
+//    console.log(pos)
+//    return parseList(script.innerHTML.slice(pos+txt.length))
+//    
+//}
+
+
 function getBeh() {
-    var txt = 'behaviors":'
-    var script = getScriptWithData(txt);
+    var txt_0 ='behaviors":'
+    var txt_1 = 'behaviors":[{"fbid'
+    var txt_2 = 'demographicStatus":'
+    var script = getScriptWithData(txt_2);
     if (script ==-1 ) 
         {return -1}
-    var pos = script.innerHTML.nthIndexOf(txt,2);
+    var pos = script.innerHTML.nthIndexOf(txt_1,1);
     console.log(pos)
-    return parseList(script.innerHTML.slice(pos+txt.length))
+    return parseList(script.innerHTML.slice(pos+txt_0.length))
     
 }
+
 
 
 var count = 200

@@ -18,9 +18,7 @@ var TYPE = 'type'
 var TYPES = {"frontAd" : "frontAd", "sideAd" : "sideAd","interests":"interestsData","advertisers":"advertisersData",demographics:'demBehaviors'};
 
 
-//var HOST_SERVER = 'http://127.0.0.1:8000/facebook-ad-collector/';
-//var HOST_SERVER = 'http://facebook-ad-collector.app-ns.mpi-sws.org/';
-var HOST_SERVER = 'http://adanalyst.mpi-sws.org/';
+var HOST_SERVER = 'https://adanalyst.mpi-sws.org/';
 
 
 var URLS_SERVER = {
@@ -57,14 +55,21 @@ var DAY_MILISECONDS =  8.64e+7;
 var FACEBOOK_PAGE = 'http://www.facebook.com'
 var ACCOUNT_SETTINGS = 'http://www.facebook.com/settings'
 var HEAD_PATTERN = /<head>[\S\s]*<\/head>/
-var FIFTEENMINUTES = 90000;
+var ONE_HALF_MINUTE = 90000;
+
+
 var ONEMINUTE = 60000 
+
+var FIFTEENMINUTES = ONE_HALF_MINUTE*15;
+
 var WAIT_FOR_TWO_HOURS = false;
 var TWO_HOURS = FIFTEENMINUTES* 8;
 
 var ABOUT_THIS_FACEBOOK_AD =['About This Facebook Ad','propos de cette pub Facebook'];
 var MANAGE_YOUR_AD_PREFERENCES =['Manage Your Ad Preferences','G\u00e9rer vos pr\u00e9f\u00e9rences'];
 var RATE_LIMIT_MSG = ['It looks like you were misusing this feature by going too fast','correctement en allant trop vite'];
+
+var LOGGED_IN = false;
 
 
 //var INTERESTSCRAWL  = localhost.interestsCrawl?localhost.interestsCrawl:0;
@@ -98,13 +103,17 @@ function getCurrentUserId() {
                 }
                 var head = h[0]
                 var userId = getUserIdStr(head);
+                
                 if ((userId)&& (userId!=-1)) {
+                    LOGGED_IN=true;
                     if ((userId!=CURRENT_USER_ID) || (CURRENT_EMAIL==='')) {
                         CURRENT_USER_ID = userId;
                         getCurrentUserEmail();
                     }
                     CURRENT_USER_ID = userId;
 
+                } else {
+                    LOGGED_IN=false;
                 }
             } catch (e) {
                 console.log('catched!')
@@ -113,7 +122,7 @@ function getCurrentUserId() {
         }
     })
     
-    window.setTimeout(getCurrentUserId,FIFTEENMINUTES/8)
+    window.setTimeout(getCurrentUserId,ONE_HALF_MINUTE/3)
 
 }
 
@@ -145,7 +154,7 @@ function getCurrentUserEmail() {
                 if (!a[STATUS] || (a[STATUS]==FAILURE)) {
                       console.log('Failure to register email');
                       console.log(a)
-                      window.setTimeout(getCurrentUserEmail,FIFTEENMINUTES)
+                      window.setTimeout(getCurrentUserEmail,ONE_HALF_MINUTE)
                 return true};
                 
                   console.log('Success registering email');
@@ -154,7 +163,7 @@ function getCurrentUserEmail() {
                },
             }).fail(function(a){
               console.log('Failure to register email');
-              window.setTimeout(getCurrentUserEmail,FIFTEENMINUTES)
+              window.setTimeout(getCurrentUserEmail,ONE_HALF_MINUTE)
 
 
             }
@@ -378,6 +387,12 @@ function exploreQueue() {
         cleanRequestLog(CURRENT_USER_ID)
         var ts =  (new Date()).getTime()
         var maxTs = Math.max.apply(null, EXPLANATION_REQUESTS[CURRENT_USER_ID])
+        
+        if (!LOGGED_IN) {
+            console.log('Not logged in! Will check again in ' + (ONE_HALF_MINUTE/(2*60000))+ ' minutes');
+            window.setTimeout(exploreQueue,ONE_HALF_MINUTE/2);
+            return
+        }
         
         if ((WAIT_FOR_TWO_HOURS) &&(ts-maxTs < TWO_HOURS)) {
             console.log('Cannot make request (rate limited). Need to wait for ' + (WAIT_BETWEEN_REQUESTS - (ts-maxTs))/60000 + ' minutes');
@@ -1141,136 +1156,6 @@ checkForInterests();
 
 
 
-//
-//
-//function checkForPreferences() {
-//       if (!localStorage.consent || (localStorage.consent.length==0) || (localStorage.consent!=="true") ) {
-//       if (CURRENT_USER_ID===-1) {
-//           window.setTimeout(checkForPreferences,FIFTEENMINUTES)
-//                     return  
-//           
-//       }        
-//     console.log(JSON.stringify({user_id:CURRENT_USER_ID}))
-//    var dat = {user_id:CURRENT_USER_ID};
-//    $.ajax({
-//        url:URLS_SERVER.getConsent,
-//        type:REQUEST_TYPE,
-//        data:dat,
-//     dataType: "json",
-//    traditional:true,
-//        success: function(resp){ 
-//                console.log(resp)
-//                if (resp.consent==true) {
-//                    localStorage.consent=true
-//                      return true
-//                }
-//        
-//                      return true
-//            },
-//        error:function() {
-//        console.log('request failed');
-//    }
-//        })
-//
-//                     window.setTimeout(checkForPreferences,FIFTEENMINUTES)
-//                     return  
-//              }
-//
-//    
-//    
-//    
-//    
-//    var lastTs = localStorage.lastCrawl
-//    if (!lastTs) {
-//        lastTs = 0;
-//    }
-//    
-//    ts = (new Date()).getTime()
-//    if (ts-lastTs > DAY_MILISECONDS) {
-//        getPreferences();
-//    }
-//    
-//    
-//    window.setTimeout(checkForPreferences,FIFTEENMINUTES)
-//}
-//
-//function crawlingDone(){
-//    var keys = Object.keys(PREFERENCESCRAWLED);
-//    for (let i=0;i<keys.length;i++) {
-//        if (!PREFERENCESCRAWLED[keys[i]]) {
-//            return false
-//        }
-//    }
-//    return true
-//    
-//    
-//}
-//
-//
-//function handleCrawlingDone() {
-//    if (CRAWLINGPREFERENCES &&  crawlingDone()) {
-//        localStorage.lastCrawl= (new Date()).getTime()
-//        if (PREFERENCESTAB!=-1) {
-////            alert('Crawling Done! Thank you very much! See you tomorrow! :)');
-//            chrome.tabs.remove(PREFERENCESTAB);
-//        }
-//        
-//        PREFERENCESTAB=-1;
-//        PREFERENCESCRAWLED = {advertisers:false,interests:false,demBeh:false};
-//        CRAWLINGPREFERENCES = false;
-//        
-//    }
-//    
-//    window.setTimeout(handleCrawlingDone,5000);
-//}
-//
-//checkForPreferences()
-//handleCrawlingDone()
-
-
-function prepareHomePage() {
-    var xmlhttp = new XMLHttpRequest();
-        var url_request = "https://www.facebook.com/";
-        xmlhttp.open("GET",url_request, true);
-     xmlhttp.onload = function (e) {
-        if (xmlhttp.readyState === 4 && xmlhttp.status === 200){
-             response = xmlhttp.responseText;
-            var head = response.match(/<head[^>]*>[\s\S]*<\/head>/gi);
-            var hdln = "<head>".length;
-            var shdln = "</head>".length;
-            head =  head[0].slice(hdln,head[0].length-shdln)
-            
-            var body = response.match(/<body[^>]*>[\s\S]*<\/body>/gi)[0];
-            body = body.slice(hdln,body.length-shdln)
-            
-//                
-            document.head.insertAdjacentHTML( 'beforeend', head ); 
-            document.body.insertAdjacentHTML('beforeend',body);
-            
-            var playground = document.createElement("div"); 
-            playground.setAttribute('id','playground');
-            var title = document.createElement('h1');
-            var textnode = document.createTextNode("PLAYGROUND FOR APP"); 
-            var adSpace = document.createElement("div")
-            adSpace.setAttribute('id',ADSPACE)
-            title.appendChild(textnode);
-            playground.appendChild(title);
-            playground.appendChild(adSpace);
-            document.body.appendChild(playground);
-            
-            //            backgroundWindow = chrome.extension.getBackgroundPage()
-//            outerHTML = jQuery.parseHTML(response)
-    
-            
-        }
-     }
-     xmlhttp.send(null);
-
-
-}
-
-
-
 
 //chrome.webRequest.onHeadersReceived.addListener(
 //    function(info) {
@@ -1535,7 +1420,6 @@ chrome.runtime.onMessage.addListener(
                 return;
                     }
                     console.log('Stoping trying...');
-                return
                    
                 return true};
                   

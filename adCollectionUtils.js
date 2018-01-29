@@ -2,9 +2,9 @@
 var LINK_TAG = 'a';
 var AD_LINK = '/ads/preferences/dialog/?ad_id=';
 var AJAXIFY = 'ajaxify';
-var EXPLANATION_TEXT = ["Why am I seeing this?","Pourquoi est-ce que je vois ça ?"];
+var EXPLANATION_TEXT = ["Why am I seeing this?","Pourquoi est-ce que je vois ça ?","¿Por qué veo esto?","Warum wird mir das angezeigt?","Γιατί το βλέπω αυτό;","Por que estou vendo isso?","Zašto mi se ovo prikazuje?","Perché visualizzo questa inserzione?","De ce văd asta?"];
 var SPLIT_AD_URL = '&';
-var MENU_LABEL = ["Report or learn more","Signaler ou en savoir plus"];
+var MENU_LABEL = ["Report or learn more","Signaler ou en savoir plus","Reportar u obtener más información","Melde dies oder erfahre mehr darüber","Υποβάλετε αναφορά ή μάθετε περισσότερα", "Denuncie ou saiba mais", "Prijavi ili saznaj više","Segnala od ottieni maggiori informazioni","Raportează sau află mai multe"];
 var ARIA_LABEL = "aria-label";
 var DATA_GT = 'data-gt';
 var DATA_TO_LOG = 'data_to_log';
@@ -12,11 +12,11 @@ var AD_ID = 'ad_id';
 var AD_ACCOUNT_ID = 'ad_account_id';
 var OK = 'OK';
 var NOT_OK = 'NOT_OK';
-var SPONSORED = ['Sponsored','Sponsorisé'];
+var SPONSORED = ['Sponsored','Sponsorisé','Publicidad','Gesponsert','Χορηγούμενη','Patrocinado','Plaćeni oglas','Sponsorizzata','Sponsorizat']; //English French Spanish German Greek Portuguese(Brazil) Croatian Italian Romanian
 var FRONT_AD_COUNT = 17;
 var NOT_FRONT_AD = 'adsCategoryTitleLink';
 var CLASS = 'class';
-var MORE_LINK_FRONT_LABEL = ['Story options','Options des actualités'];
+var MORE_LINK_FRONT_LABEL = ['Story options','Options des actualités','Opciones de la historia','Meldungsoptionen','Επιλογές ανακοινώσεων','Opções da história','Opcije priče','Opzioni per la notizia','Opţiuni pentru articol'];
 var FRONTAD_OVERLAY = 'uiContextualLayerPositioner uiLayer';
 var COLLECTED = 'ad_collected';
 var TYPES = {"frontAd" : "frontAd", "sideAd" : "sideAd"};
@@ -48,6 +48,8 @@ var FRONTADPOSTPATTERN3= /%22qid%22%3A%22[0-9]+%22/
 var FRONTADPOSTPATTERNSTRING3a = "%22qid%22%3A%22"
 var FRONTADPOSTPATTERNSTRING3b = "%22"
 
+var GRAB_ME = 'grab_me'
+
 var ADVERTISER_ID_PATTERN_IDENTIFIER = /id=?[0-9]+/
 
 
@@ -64,6 +66,21 @@ var URL_REGEXP= /https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]
 
 var AJAXIFYPATTERNSIDEAD= /"\\\/ads\\\/preferences\\\/dialog\S+?"/
 var ADIDPATTERN = /id=[0-9]+/;
+
+BROWSERS = {CHROME:'chrome',FIREFOX:'firefox'}
+
+
+function BrowserDetection() {
+
+    if (navigator.userAgent.search("Chrome") >= 0) {
+        return BROWSERS.CHROME;
+            
+        }
+   if (navigator.userAgent.search("Firefox") >= 0) {
+        return BROWSERS.FIREFOX;
+   }
+    return NaN;
+}
 
 
 function isNumeric(value) {
@@ -205,6 +222,7 @@ function isScrolledIntoView(elem)
     if (isHidden(elem)){
         return false
     }
+//    return true
     var docViewTop = $(window).scrollTop();
     var docViewBottom = docViewTop + $(window).height();
 
@@ -232,6 +250,26 @@ function filterFrontAds(lst) {
     
     return newLst
 }
+
+
+function filteredClassedAds(lst) {
+    var newLst = [];
+    for (var i=0;i<lst.length;i++) {
+        if ( (isScrolledIntoView(lst[i]))) {
+            newLst.push(lst[i])
+
+        }
+        
+                    if ((SPONSORED.indexOf(lst[i].text)>=0 ) && (lst[i].getAttribute(CLASS)) &&  (lst[i].getAttribute(CLASS).indexOf(NOT_FRONT_AD)===-1) && (!isScrolledIntoView(lst[i]))){
+                console.log(lst[i])
+                            console.log('*****************HIDDEN*************');
+
+            }
+    }
+    
+    return newLst
+}
+
 
 
 
@@ -272,10 +310,149 @@ function filterCollectedAds(ads) {
 }
 
 
+
+function filterSheets(sheets) {
+    var filteredSheets = [];
+    for (let i=0;i<sheets.length;i++){
+        if (sheets[i].href && ((sheets[i].href.indexOf("https://www.facebook.com/rsrc.php")>-1) ||(sheets[i].href.indexOf("data:text/css; charset=utf-8,._")>-1)) )  {
+            continue
+        }
+        filteredSheets.push(sheets[i])
+    }
+    return filteredSheets
+}
+
+
+function findSponsoredClass(sheet) {
+    let rules = sheet.rules?sheet.rules:sheet.cssRules
+    if (!rules) {
+         console.log(rules)
+        return 
+    }
+    
+    for (var i=0;i<rules.length;i++) {
+        if (!rules[i].cssText) {
+            continue
+        }
+        
+        var text = rules[i].cssText;
+        for (let k=0;k<SPONSORED.length;k++) {
+            if (text.indexOf('::after { content: "'+SPONSORED[k]+'"; }')>-1) {
+            return text.replace('::after { content: "'+SPONSORED[k]+'"; }','')
+        }
+            
+        }
+        
+        
+    }
+    return 
+}
+
+
+function getSponsoredFromClasses(filteredSheets) {
+        for (let i=0;i<filteredSheets.length;i++) {
+        sponsoredClass = findSponsoredClass(filteredSheets[i])
+        if (sponsoredClass) {
+            return sponsoredClass.slice(1,sponsoredClass.length)
+        }
+        
+    }
+    return
+    
+}
+
+function getFrontAdsByClass() {
+    
+    var sheets = document.styleSheets;
+    var filteredSheets = filterSheets(sheets);
+    var sponsoredClass = getSponsoredFromClasses(filteredSheets) 
+    
+    if (!sponsoredClass) {
+        return []
+    }
+    
+    return filteredClassedAds(document.getElementsByClassName(sponsoredClass));
+
+    
+}
+
+
+//Facebook currently adds in the "sponsored" tag hidden letters with font-size:0
+
+function getNonHiddenTextByChildren(children){
+        var txt = ''
+    
+    for (let i=0;i<children.length;i++) {
+        
+        if (getComputedStyle(children[i])['font-size'] === "0px") {
+            continue;
+        }
+        txt += children[i].innerText;
+    }
+    
+    return txt
+}
+
+function isLinkSponsoredHiddenLetters(elem) {
+    if (elem.children.length!==1) {
+        return false;
+    }
+    
+    if (elem.children[0].children.length===0) {
+        return false;
+    }
+    
+    var children = elem.children[0].children;
+    
+    var tag = getNonHiddenTextByChildren(children);
+
+    for (let i=0;i<SPONSORED.length;i++) {
+        if (tag===SPONSORED[i]) {
+            return true;
+        }
+    }
+    
+    return false
+}
+
+function findFrontAdsWithHiddenLetters() {
+    var elems = document.getElementsByTagName(LINK_TAG);
+    var links = [];
+    for (let i=0;i<elems.length;i++) {
+        if (isLinkSponsoredHiddenLetters(elems[i])) {
+            links.push(elems[i]);
+        }
+    }
+    
+    return links;
+    
+}
+
+function getGrabbed(links){
+    var elems=document.getElementsByClassName(GRAB_ME)
+    for (let i=0;i<elems.length;i++) {
+        links.push(elems[i])
+        elems[i].classList.remove(GRAB_ME)
+    }
+    return links
+}
+
 function getFrontAdFrames() {
     
     var links = document.getElementsByTagName(LINK_TAG);
+    
+
     links = filterFrontAds(links);
+    if (links.length==0) {
+        links = getFrontAdsByClass();
+    }
+    
+    if (links.length==0) {
+        links = findFrontAdsWithHiddenLetters();
+    }
+    
+    links = getGrabbed(links);
+    
 //    console.log(links)
     var frontAds = [];
     for (var i=0;i<links.length;i++) {
@@ -696,20 +873,20 @@ function hoverOverButton(adFrame) {
 
 
 
-function strip(html)
-{
-   var tmp = document.createElement("DIV");
-    
-   tmp.innerHTML = html.replace(/\\u003c/gi,"<").replaceAll('\\','');
-    
-    var txt = '';
-    
-    for (var i =0;i<tmp.childNodes.length;i++) {
-        txt +='. ' + tmp.childNodes[i].textContent || tmp.childNodes[i].innerText || ""
-    }
-    
-   return txt ;
-}
+//function strip(html)
+//{
+//   var tmp = document.createElement("DIV");
+//    
+//   tmp.innerHTML = html.replace(/\\u003c/gi,"<").replaceAll('\\','');
+//    
+//    var txt = '';
+//    
+//    for (var i =0;i<tmp.childNodes.length;i++) {
+//        txt +='. ' + tmp.childNodes[i].textContent || tmp.childNodes[i].innerText || ""
+//    }
+//    
+//   return txt ;
+//}
 
 
 

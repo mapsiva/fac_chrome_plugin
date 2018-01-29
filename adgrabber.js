@@ -673,9 +673,8 @@ window.addEventListener("message", function(event) {
 
 
 
-chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
-
-    if (!sender.tab) {
+function onMessageFunction(msg,sender,sendResponse) {
+        if (!sender.tab) {
         console.log('FROM background');
         console.log(msg);
         if (msg.type==='getInterests'){
@@ -690,8 +689,29 @@ chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
     }
 
   if (msg.explanation) {
-    console.log('AdID: ' +msg.adId +'. EXPLANATION: ' + strip(msg.explanation))
+      console.log('AdID: ' +msg.adId)
+//    console.log('AdID: ' +msg.adId +'. EXPLANATION: ' + strip(msg.explanation))
   }
-});
+}
+
+if (BrowserDetection()=== BROWSERS.CHROME) {
+chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
+
+        onMessageFunction(msg,sender,sendResponse)
+
+});    
+}
+
+
+if (BrowserDetection()=== BROWSERS.FIREFOX) {
+browser.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
+
+        onMessageFunction(msg,sender,sendResponse)
+
+});    
+}
+
+
+
 
 
