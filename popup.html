@@ -1,131 +1,107 @@
 <!doctype html>
 
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 
-  <title>AdAnalyst</title>
-  <meta name="description" content="AdAnalyst">
-  <meta name="author" content="AdAnalyst">
-  <script src="jquery-3.1.1.min.js" ></script>
-    
-  <link rel="stylesheet" href="bootstrap.min.css">
-
-  <script src="bootstrap.min.js" ></script>
-
+    <title>Sentinela Político</title>
+    <meta name="description" content="AdAnalyst">
+    <meta name="author" content="AdAnalyst">
+    <script src="jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="bootstrap.min.js"></script>
     <script src='popup.js'> 
-      
+
     </script>
     <style>
-    body {
-    min-width:500px;
-        color:#5E5E5F;
-}
+        body {
+            min-width: 500px;
+            color: #5E5E5F;
+        }
     </style>
 </head>
 
 <body>
-        <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
-
+    <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="popup.js"></script>
 
-    
     <div class="container">
-  <h1><img src="enabled.png" alt="logo" height=50/>  AdAnalyst   </h1>
+        <h1>
+            <img src="enabled.png" alt="logo" height="50" title="__MSG_appName__" data-localize="__MSG_appName__"/> Sentinela Político </h1>
         <div id="normalView">
             <ul class="list-group">
-
-
-                  <li class="list-group-item"><a href="http://adanalyst.mpi-sws.org/view_data_about_me" target="_blank"> 
-                    Data
-                      </a></li>
-            
-                                
-                  <li class="list-group-item"><a href="http://adanalyst.mpi-sws.org/view_advertisers" target="_blank"> 
-               Advertisers
-                </a></li>
-                                                
-                                                                  <li class="list-group-item"><a href="http://adanalyst.mpi-sws.org/view_all_ads" target="_blank"> 
-                Ads
-                </a></li>
-                
-                <li class="list-group-item"><a href="http://adanalyst.mpi-sws.org/contact_us" target="_blank"> 
-                Contact Us
-                </a></li>
-            
-            
+                <li class="list-group-item">
+                    <a href="http://200.129.206.105:45119/facebook-ad-collector/view_digest?v=0.0.33" target="_blank">
+                        Resumo dos Anúncios Coletados
+                    </a>
+                </li>
+               
             </ul>
             <div class="checkbox">
-            <label><input type="checkbox" checked id="collectPrefs">Collect Preferences</label>
+                <label><input type="checkbox" checked id="collectPrefs">Coletar Preferências</label>
             </div>
-            
-          
         </div>
-        
+
         <div id="notLoggedInView">
             <div class="alert alert-danger">
-                <strong>Note!</strong> If you have not logged in Facebook, AdAnalyst is not working. <br >If you are already logged in please wait for a few moments...
+                <strong>Opa!</strong> Se você não estiver logado no Facebook o Sentinela Político não funciona.
+                <br>Se você já está logado no Facebook aguarde um momento...
             </div>
         </div>
-                <div id="consentForm" class="jumbotron">
+
+        <div id="consentForm" style="padding:10px" class="container">
+            <p class="row">
+                <small>
+                    Gostaríamos de convidá-lo(a) para participar do nosso estudo, que gira em torno da avaliação da transparência dos Anúncios do Facebook, bem como o nível de controle que ele fornece aos usuários.
+                </small>
+            </p>
+
+            <p class="row">
+                <small>Pedimos que você participe deste estudo porque você tem uma conta no Facebook. Sua decisão de participar neste projeto de pesquisa é voluntário. Você não precisa participar e pode se recusar a participar. Mesmo que você comece a usar nossa aplicação, pode cancelar a qualquer momento.
+                </small>
+            </p>
+
+            <p class="row">
+                <small>O risco para você, como participante, é mínimo. Nós vamos colecionar seu identificador no Facebook, os anúncios que você recebe, as explicações que o Facebook fornece para você e, periodicamente, a sua página de preferências de anúncios (<a href="https://www.facebook.com/ads/preferences"> https://www.facebook.com/ads/preferences </a>). Além disso, podemos segmentá-lo com alguns anúncios e, consequentemente, coletar suas explicações.
+                </small>
+            </p>
+
+            <p class="row">
+
+                <small>Nós manteremos esses dados em um servidor privado de pesquisa, e ninguém além dos membros da equipe de pesquisa pode visualizar os dados. O principal risco aqui é que você pode não querer tornar esses dados públicos (por exemplo, você pode não desejar que outros saibam quais anúncios você está recebendo). Portanto, anonimizaremos todos dos seus dados depois que o projeto for concluído e apenas arquivará dados anônimos; vamos excluir todos os dados não anônimos, uma vez que o experimento acabe. Todas as informações de identificação pessoal (nomes, IDs do Facebook, endereços de e-mail) não serão recuperáveis de nossos dados anônimos.
+                </small>
+            </p>
 
 
-<div class="row">
+            <p class="row">
+                <small> Se você tiver alguma dúvida sobre privacidade eletrônica, sinta-se à vontade para entrar em contato com Fabrício Benevenuto, Doutor em Ciência da Computação via e-mail em <a href="fabricio@dcc.ufmg.br"> fabricio@dcc.ufmg.br </a> e Márcio Silva <a href="marcio@facom.ufms.br"> marcio@facom.ufms.br </a>
+                </small>
+            </p>
 
-<small >
-    We would like to invite you to participate in our study, which revolves around the evaluation of the transparency of the Facebook ad ecosystem, as well as the level of control it provides to the users.
-</small>
-         </div>
-  
-  <div class="row">
-  <small>We are asking you to participate in this study because you have a Facebook account. Your decision to participate in this research project is voluntary. You do not have to participate and you can refuse to participate. Even if you start using our application, you can opt out at any time.
-</small>
-         </div>
+            <p class="row">
+                <small>Ao clicar no botão Aceitar, você está indicando que você concorda em participar desse estudo. E se você não concorda, basta fechar esta janela.</small>
+                </p>
+            <p class="row">
 
-      <div class="row">
+                <div class="col-md-12 text-center">
+                    <button type="button" class="btn btn-primary btn-lg" id="consentButton">
+                        <span class="glyphicon glyphicon-ok"></span> Aceitar</button>
+                </div>
+            </p>
 
-      <small>The risk to you, as a participant, is minimal.  We are going to collect your Facebok id, the ads you receive, the explanations that Facebook provides to you, and periodically, your ad preferences page (<a href="https://www.facebook.com/ads/preferences">https://www.facebook.com/ads/preferences</a>). Moreover, we might target you with some ads, and consequently, collect their explanations.
-</small> 
-         </div>
-
-       <div class="row">
- 
-       <small>We will keep this data on a private research server, and no one other than active research team members will be able to view the data. The primary risk here is that you may not wish to make such data public (for example, you may not wish others to know what ads you are receiving). We will therefore anonymize all of your data after the project is completed, and will only archive anonymized data; we will delete all the non-anonymized data once the experiment is done. All personally identifiable information (names, Facebook IDs, email addresses) will not be recoverable from our anonymized data.
-</small>
         </div>
-                    
-                    
-                           <div class="row">
- 
-       <small>                    If you have any questions regarding electronic privacy, please feel free to contact Mark Nardone, IT Security Analyst via phone at 617-373-7901, or via email at <a href="privacy@neu.edu">privacy@neu.edu</a>. If you have any questions about this study, please feel free to contact Alan Mislove, <a href="amislove@ccs.neu.edu">amislove@ccs.neu.edu</a>, the person mainly responsible for the research. If you have any questions regarding your rights as a research participant, please contact Nan C. Regina, Director, Human Subject Research Protection, 960 Renaissance Park, Northeastern University, Boston, MA 02115. Tel: 617.373.7570, Email: <a href='irb@neu.edu'>irb@neu.edu</a>. You may call anonymously if you wish.
-
-</small>
-        </div>
-                    
-
-
-       <div class="row ">
-  
-    <small>By clicking the Accept button below, you are indicating that you consent to participate in this study. If you do not consent, simply close this window.</small>
-       </div>
-                   <div class="row">
-
-    <div class="col-md-12 text-center"> 
-    <button type="button" class="btn btn-primary btn-lg" id="consentButton"> <span class="glyphicon glyphicon-ok"></span> Accept</button>
-            </div>
-            </div>
-        
-        </div>
-<!--        <a href="https://www.facebook.com/v2.9/dialog/oauth?client_id=769242713247780&redirect_uri=https://www.facebook.com/connect/login_success.html&response_type=code%20token" target="_blank"> Fb login</a>-->
-<!--
+        <!--        <a href="https://www.facebook.com/v2.9/dialog/oauth?client_id=769242713247780&redirect_uri=https://www.facebook.com/connect/login_success.html&response_type=code%20token" target="_blank"> Fb login</a>-->
+        <!--
         <fb:login-button 
   scope="public_profile,email"
   onlogin="checkLoginState();">
 </fb:login-button>
 -->
-        </div>
+    </div>
 
-    
 
+<script type="text/javascript" src="localize.js"></script>
 </body>
+
 </html>

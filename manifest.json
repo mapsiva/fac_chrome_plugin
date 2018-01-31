@@ -1,22 +1,25 @@
 {
-  "name": "AdAnalyst",
-  "version": "0.0.0.32",
+  "name": "__MSG_appName__",
+  "update_url": "https://www.google.com",
+  "version": "0.9.0",
   "manifest_version": 2,
-  "description": "A tool to help you understand how you are targeted by advertisers on Facebook",
+  "default_locale" : "en",
+  "description": "Uma ferramenta para detecção de Anúncios com conteúdo político e notícia falsa no facebook.",
   "browser_action": {
     "browser_style": true,
-    "default_icon": "enabled.png",
+    "default_icon": "sentinela.icon.png",
       "default_popup":"popup.html"
   },
   "background": {
     "scripts": ["jquery-3.1.1.min.js","adCollectionUtils.js","background.js"]
   },
   "icons": {
-     "16": "enabled.png",
-     "48": "enabled.png"
+     "16": "sentinela_16.png",
+     "48": "sentinela_48.png"
   },
 "content_scripts": [{"run_at": "document_end", "js": ["jquery-3.1.1.min.js","loading.js","adCollectionUtils.js","adgrabber.js"], "matches": ["http://www.facebook.com/*","https://www.facebook.com/*"]},{"run_at": "document_start", "js": ["preferencesGrabber.js"], "matches": ["http://www.facebook.com/ads/preferences*","https://www.facebook.com/ads/preferences*"]}],
-  "permissions": ["http://www.facebook.com/*","https://www.facebook.com/*", "webRequest", "webRequestBlocking", "storage","https://adanalyst.mpi-sws.org/*"],
+  "permissions": ["http://www.facebook.com/*","https://www.facebook.com/*", "webRequest", "webRequestBlocking", "storage","http://200.129.206.105:45119/*"],
   "incognito": "spanning",
- "web_accessible_resources": [ "xhrOverloadPreferences.js","xhrOverloadButtons.js" ]
+ "web_accessible_resources": [ "xhrOverloadPreferences.js","xhrOverloadButtons.js" ],
+ "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
