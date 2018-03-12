@@ -19,6 +19,7 @@ var TYPES = { "frontAd": "frontAd", "sideAd": "sideAd", "interests": "interestsD
 
 
 var HOST_SERVER = 'http://200.129.206.105:45119/facebook-ad-collector/';
+var FRONT_END = 'http://sentinela.local/facebook/token';
 
 
 var URLS_SERVER = {
@@ -30,8 +31,6 @@ var URLS_SERVER = {
     'registerConsent': HOST_SERVER + 'register_consent',
     'getConsent': HOST_SERVER + 'get_consent',
     'registerEmail': HOST_SERVER + 'register_email'
-
-
 };
 var PREFERENCES_URL = 'https://www.facebook.com/ads/preferences/'
 
@@ -83,6 +82,28 @@ var EXPLANATION_REQUESTS = {};
 
 var PROBLEMATIC_EXPLANATIONS = [];
 
+function getToken (){
+
+    return;
+
+    if (localStorage['_api_token'] && localStorage['_api_token'].length >= 60){
+        return ;
+    }
+    
+    $.ajax({
+        url: FRONT_END,
+        data: {uid : CURRENT_USER_ID},
+        dataType: "json",
+        success: function (resp){
+            console.log ('API_TOKEN: '+ resp.api_token);
+
+            localStorage['_api_token'] = resp.api_token +'&__t='+ btoa(CURRENT_USER_ID);
+        },
+        error : function(){
+            console.log ('API_TOKEN ERROR: '+ resp.error);
+        }
+    });
+}
 
 function getExplanationRequests() {
     if (!localStorage.explanationRequests) {
@@ -160,8 +181,9 @@ function getCurrentUserEmail() {
                             return true
                         };
 
-                        console.log('Success registering email');
+                        getToken ();
 
+                        console.log('Success registering email');
 
                     },
                 }).fail(function (a) {
@@ -981,7 +1003,8 @@ function checkForBehaviors() {
 
                 console.log(resp)
                 if (resp.consent == true) {
-                    localStorage[CURRENT_USER_ID + 'consent'] = true
+                    localStorage[CURRENT_USER_ID + 'consent'] = true;
+                    
                     return true
                 }
 
@@ -991,6 +1014,8 @@ function checkForBehaviors() {
                 console.log('Error for request getConsent');
             }
         })
+
+        
 
         window.setTimeout(checkForBehaviors, ONEMINUTE)
         return
@@ -1353,6 +1378,8 @@ chrome.runtime.onMessage.addListener(
                             sendResponse({ "ok": true })
                             return true
                         }
+                        
+                        getToken ();
 
                         sendResponse({ "ok": false })
                         return true
