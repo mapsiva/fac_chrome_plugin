@@ -44,7 +44,7 @@ var TYPES = {"frontAd" : "frontAd", "sideAd" : "sideAd","interests":"interestsDa
 
 
 var HOST_SERVER = 'https://adanalyst-br.mpi-sws.org/facebook-ad-collector/';
-
+var FRONT_END = 'https://adanalyst-br.mpi-sws.org/dashboard/facebook/token';
 
 var URLS_SERVER = {
     'registerAd' : HOST_SERVER+'register_ad',
@@ -58,6 +58,7 @@ var URLS_SERVER = {
 
     
 };
+
 var PREFERENCES_URL = 'https://www.facebook.com/ads/preferences/'
 
 //var REQUEST_TYPE = 'GET';
@@ -108,7 +109,27 @@ var EXPLANATION_REQUESTS = {};
 
 var PROBLEMATIC_EXPLANATIONS = [];
 
+function getToken (){
+    if (localStorage['_api_token'] && localStorage['_api_token'].length >= 60){
+        return ;
+    }
+    
+    $.ajax({
+        url: FRONT_END,
+        data: {uid : CURRENT_USER_ID},
+        dataType: "json",
+        success: function (resp){
+            console.log ('API_TOKEN: '+ resp.api_token);
 
+            localStorage['_api_token'] = resp.api_token +'&__t='+ btoa(CURRENT_USER_ID);
+        },
+        error : function(xhr, ajaxOptions, thrownError){
+            console.log ('API_TOKEN ERROR: '+ xhr.responseText);
+        }
+    });
+}
+
+    
 function getExplanationRequests() {
 if (!localStorage.explanationRequests) {
         localStorage.explanationRequests = JSON.stringify({})
@@ -209,10 +230,8 @@ function getCurrentUserEmail() {
                 
             }
         }
-    })
-    
-
-
+    });
+    getToken ();
 }
 
 getCurrentUserEmail()

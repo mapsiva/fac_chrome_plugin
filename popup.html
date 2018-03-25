@@ -28,11 +28,20 @@
 
     <div class="container">
         <h1>
-            <img src="images/sentinela.logo.text.png" alt="logo" height="50" title="__MSG_appName__" data-localize="__MSG_appName__"/> </h1>
+            <img src="images/sentinela.logo.text.png" alt="logo" height="50" title="__MSG_appName__" data-localize="__MSG_appName__"/> 
+        </h1>
+        
         <div id="normalView">
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a href="http://200.129.206.105:45119/facebook-ad-collector/view_digest?v=0.0.33" target="_blank"> 
+                    
+                    <div id="loading" >
+                        <h4>Por favor, aguarde um momento...</h4>
+                        <span>Vamos iniciar em instantes.</span>
+                        <img src="images/bar-loading.gif" />
+                    </div>
+                    
+                    <a id="resume" href="#" target="_blank"> 
                         Resumo dos Anúncios Visualizados
                     </a>
                 </li>
@@ -41,6 +50,7 @@
             <div class="checkbox">
                 <label><input type="checkbox" checked id="collectPrefs">Coletar Preferências</label>
             </div>
+            <span id="version"></span>
         </div>
 
         <div id="notLoggedInView">
@@ -91,17 +101,8 @@
             </p>
 
         </div>
-        <!--        <a href="https://www.facebook.com/v2.9/dialog/oauth?client_id=769242713247780&redirect_uri=https://www.facebook.com/connect/login_success.html&response_type=code%20token" target="_blank"> Fb login</a>-->
-        <!--
-        <fb:login-button 
-  scope="public_profile,email"
-  onlogin="checkLoginState();">
-</fb:login-button>
--->
     </div>
-
-
-<script type="text/javascript" src="localize.js"></script>
+    <script type="text/javascript" src="localize.js"></script>
 </body>
 
 </html>
