@@ -1,6 +1,6 @@
 {
   "name": "__MSG_appName__",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "manifest_version": 2,
   "default_locale" : "pt_BR",
   "description": "Uma ferramenta para detecção de Anúncios com conteúdo político e notícia falsa no facebook.",
