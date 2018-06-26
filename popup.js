@@ -30,6 +30,12 @@ FIVE_SECONDS = 5000;
 THIRTY_SECONDS = 6*FIVE_SECONDS
 URL_DASHBOARD = 'https://adanalyst-br.mpi-sws.org/dashboard/facebook';
 
+function getPluginVersion(){
+    if (chrome.app)
+        return chrome.app.getDetails().version;
+    return browser.runtime.getManifest().version;
+}
+
 // var consent= false;
 if (!localStorage.collectPrefs) {
     localStorage.collectPrefs=true;
@@ -54,7 +60,8 @@ function checkForApiToken (){
     else{
         $('#resume').show();
         $('#loading').hide();
-        var version = chrome.app.getDetails().version;
+        var version = getPluginVersion ();
+        
         $('#resume').attr('href', URL_DASHBOARD + '?__e=' + localStorage['_api_token'] + '&version='+ version);
     }
 }
@@ -67,7 +74,9 @@ function getConsent() {
             $('#consentForm').hide()
             $('#notLoggedInView').hide()
 
-            var version = chrome.app.getDetails().version;
+            
+            var version = getPluginVersion ();
+
             $('#version').html('Versão: '+ version);
 
             $('#resume').hide();
@@ -140,3 +149,4 @@ $(document).ready(function(){
         localStorage.collectPrefs=document.getElementById('collectPrefs').checked; 
     });
 });
+

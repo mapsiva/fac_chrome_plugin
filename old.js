@@ -11,7 +11,7 @@
 //    loadPopUnder()
 
 //win2.document.location.href='http://www.facebook.com/';
-});
+//cd});
 
 function printShit(sideAds) {
     for (let i in sideAds) {

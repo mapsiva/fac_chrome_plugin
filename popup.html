@@ -16,13 +16,13 @@
     </script>
     <style>
         body {
-            min-width: 500px;
+            
             color: #5E5E5F;
         }
     </style>
 </head>
 
-<body>
+<body style="min-height: 220px">
     <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="popup.js"></script>
 
@@ -42,7 +42,7 @@
                     </div>
                     
                     <a id="resume" href="#" target="_blank"> 
-                        Resumo dos Anúncios Visualizados
+                        &raquo; Resumo dos Anúncios Visualizados
                     </a>
                 </li>
                
@@ -57,10 +57,11 @@
             <div class="alert alert-info">
                 <strong>Opa!</strong> Se você não estiver logado no Facebook o Monitor de Anúncios do Facebook não funciona.
                 <p>Se você já está logado no Facebook aguarde só um momento para começarmos...</p>
+                <img src="images/bar-loading.gif" />
             </div>
         </div>
 
-        <div id="consentForm" style="padding:10px" class="container">
+        <div id="consentForm" style="padding:10px; display: none" class="container">
             <p class="row">
                 <small>
                     Gostaríamos de convidá-lo(a) para participar do nosso estudo, que gira em torno da avaliação da transparência dos Anúncios do Facebook, bem como o nível de controle que ele fornece aos usuários.
