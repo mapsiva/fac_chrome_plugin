@@ -31,3 +31,9 @@ function localizeHtmlPage() {
 //alert(chrome.i18n.getUILanguage().split('-')[0]);
 
 localizeHtmlPage();
+
+
+$('.localize').each(function(index,item){
+    var localizeKey = $(item).data( 'localize' );
+    $(item).html(chrome.i18n.getMessage(localizeKey));
+});

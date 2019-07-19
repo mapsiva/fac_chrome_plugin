@@ -87,13 +87,14 @@ function getAdIdParams(response) {
                 var requestParams = this.responseText.match(AJAXIFYPATTERN)[0].replace('ajaxify":"\\\/ads\\\/preferences\\\/dialog\\\/?','');
                 
                 requestParams = requestParams.slice(0,requestParams.length-1);
+        
                 console.log(requestParams)
-                
+        
                 var adId = requestParams.match(ADIDPATTERN)[0].match(NUMBER_TAG)[0];
-                var asyncParams = require('getAsyncParams')();
+        
+                var asyncParams = require('getAsyncParams')('POST');
                 
                 data = {qId:qId,buttonId:buttonId,requestParams:requestParams,adId:adId,adButton:true,asyncParams:asyncParams};
-//                console.log(data);
                 
                 window.postMessage(data,'*');
                 return

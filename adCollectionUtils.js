@@ -37,7 +37,7 @@ var AD_ID = 'ad_id';
 var AD_ACCOUNT_ID = 'ad_account_id';
 var OK = 'OK';
 var NOT_OK = 'NOT_OK';
-var SPONSORED = ['Sponsored','Sponsorisé','Publicidad','Gesponsert','Χορηγούμενη','Patrocinado','Plaćeni oglas','Sponsorizzata','Sponsorizat']; //English French Spanish German Greek Portuguese(Brazil) Croatian Italian Romanian
+var SPONSORED = ['Sponsored', 'Sponsorisé','Publicidad','Gesponsert','Χορηγούμενη','Patrocinado','Plaćeni oglas','Sponsorizzata','Sponsorizat']; //English French Spanish German Greek Portuguese(Brazil) Croatian Italian Romanian
 var FRONT_AD_COUNT = 17;
 var NOT_FRONT_AD = 'adsCategoryTitleLink';
 var CLASS = 'class';
@@ -81,6 +81,7 @@ var ADVERTISER_ID_PATTERN_IDENTIFIER = /id=?[0-9]+/
 
 //var URL_REGEXP = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
 var URL_REGEXP= /https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,}/
+var UISTREAMPRIVACY = 'uiStreamPrivacy'
 
 ///"background-image: url(https://scontent.xx.fbcdn.net/v/t15.0-10/p480x480/17621064_1769517093062117_5270720042437181440_n.jpg?oh=c6831f7394bb102f943e26ea541b167c&oe=595B080B);"
 
@@ -416,16 +417,16 @@ function getFrontAdsByClass() {
 //Facebook currently adds in the "sponsored" tag hidden letters with font-size:0
 
 function getNonHiddenTextByChildren(children){
-        var txt = ''
-    
+    var txt = ''
+
     for (let i=0;i<children.length;i++) {
         
-        if (getComputedStyle(children[i])['font-size'] === "0px") {
+        if ((getComputedStyle(children[i])['font-size'] === "0px") || (getComputedStyle(children[i])['opacity'] === "0")  ){
             continue;
         }
         txt += children[i].innerText;
     }
-    
+
     return txt
 }
 
@@ -472,6 +473,47 @@ function getGrabbed(links){
     }
     return links
 }
+function getChildren(n, skipMe){
+    var r = [];
+    for ( ; n; n = n.nextSibling ) 
+       if ( n.nodeType == 1 && n != skipMe)
+          r.push( n );        
+    return r;
+};
+
+function getSiblings(n) {
+    return getChildren(n.parentNode.firstChild, n);
+}
+
+
+function areSiblingsSponsored(elem){
+
+    var siblings = getSiblings(elem);
+
+    for (let i=0;i<siblings.length;i++) {
+        if (isLinkSponsoredHiddenLetters(siblings[i])) {
+            return true;
+        }
+    }
+
+    return false;
+
+}
+
+function findFrontAdsWithHiddenLettersSiblings(){
+    var linksPrivacy = document.getElementsByClassName(UISTREAMPRIVACY)
+
+    var links = [];
+
+    for (let i=0;i<linksPrivacy.length;i++) {
+        if (areSiblingsSponsored(linksPrivacy[i])) {
+            links.push(linksPrivacy[i])        
+        }
+    }
+
+    return links;
+
+}
 
 function getFrontAdFrames() {
     
@@ -479,23 +521,32 @@ function getFrontAdFrames() {
     
 
     links = filterFrontAds(links);
-    if (links.length==0) {
-        links = getFrontAdsByClass();
-    }
+
+    Array.prototype.push.apply(links,getFrontAdsByClass());
+    links = links.unique();
+
     
-    if (links.length==0) {
-        links = findFrontAdsWithHiddenLetters();
-    }
+    
+    Array.prototype.push.apply(links,findFrontAdsWithHiddenLetters());
+
+    Array.prototype.push.apply(links,findFrontAdsWithHiddenLettersSiblings());
+
+
     
     links = getGrabbed(links);
-    
+
+    var already_in_list = new Set([]);
 //    console.log(links)
     var frontAds = [];
     for (var i=0;i<links.length;i++) {
         var link = links[i];
         var frame = getParentAdDiv(link);
-//        TODO: placeholder if the ad was loaded
-        frontAds.push(frame);    
+        if (already_in_list.has(frame.id)) {
+            continue
+        }
+
+        frontAds.push(frame);  
+        already_in_list.add(frame.id)  
     }
 //    frontAds = frontAds.unique();
     return filterCollectedAds(frontAds);

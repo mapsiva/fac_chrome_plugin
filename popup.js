@@ -77,7 +77,7 @@ function getConsent() {
             
             var version = getPluginVersion ();
 
-            $('#version').html('Versão: '+ version);
+            $('#version').html(chrome.i18n.getMessage('version')+': '+ version);
 
             $('#resume').hide();
             
@@ -94,6 +94,8 @@ function getConsent() {
             $('#notLoggedInView').show()
             $('#normalView').hide()
             $('#consentForm').hide()
+
+            
 
             setTimeout(getConsent, FIVE_SECONDS);
 
@@ -149,4 +151,3 @@ $(document).ready(function(){
         localStorage.collectPrefs=document.getElementById('collectPrefs').checked; 
     });
 });
-
