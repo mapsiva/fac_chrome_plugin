@@ -1,3 +1,5 @@
+
+
 function replace_i18n(obj, tag) {
     var msg = tag.replace(/__MSG_(\w+)__/g, function(match, v1) {
         return v1 ? chrome.i18n.getMessage(v1) : '';
@@ -28,12 +30,14 @@ function localizeHtmlPage() {
     }
 }
 
-//alert(chrome.i18n.getUILanguage().split('-')[0]);
-
-localizeHtmlPage();
-
-
 $('.localize').each(function(index,item){
     var localizeKey = $(item).data( 'localize' );
-    $(item).html(chrome.i18n.getMessage(localizeKey));
+
+    if (chrome.app)
+        $(item).html(chrome.i18n.getMessage(localizeKey));
+    else{
+        $(item).html(browser.i18n.getMessage(localizeKey));
+        
+    }
+        
 });

@@ -20,37 +20,7 @@
         "description" : ""
     },
     "term":{
-        "message" : "<p class='row'>
-        <small>
-            Gostaríamos de convidá-lo(a) para participar do nosso estudo, que gira em torno da avaliação da transparência dos Anúncios do Facebook, bem como o nível de controle que ele fornece aos usuários.
-        </small>
-        </p>
-
-        <p class='row'>
-            <small>Pedimos que você participe deste estudo porque você tem uma conta no Facebook. Sua decisão de participar neste projeto de pesquisa é voluntário. Você não precisa participar e pode se recusar a participar. Mesmo que você comece a usar nossa aplicação, pode cancelar a qualquer momento.
-            </small>
-        </p>
-
-        <p class='row'>
-            <small>O risco para você, como participante, é mínimo. Nós vamos colecionar seu identificador no Facebook, os anúncios que você recebe, as explicações que o Facebook fornece para você e, periodicamente, a sua página de preferências de anúncios (<a href='https://www.facebook.com/ads/preferences'> https://www.facebook.com/ads/preferences </a>). Além disso, podemos segmentá-lo com alguns anúncios e, consequentemente, coletar suas explicações.
-            </small>
-        </p>
-
-        <p class='row'>
-
-            <small>Nós manteremos esses dados em um servidor privado de pesquisa, e ninguém além dos membros da equipe de pesquisa pode visualizar os dados. O principal risco aqui é que você pode não querer tornar esses dados públicos (por exemplo, você pode não desejar que outros saibam quais anúncios você está recebendo). Portanto, anonimizaremos todos dos seus dados depois que o projeto for concluído e apenas arquivará dados anônimos; vamos excluir todos os dados não anônimos, uma vez que o experimento acabe. Todas as informações de identificação pessoal (nomes, IDs do Facebook, endereços de e-mail) não serão recuperáveis de nossos dados anônimos.
-            </small>
-        </p>
-
-
-        <p class='row'>
-            <small> Se você tiver alguma dúvida sobre privacidade eletrônica, sinta-se à vontade para entrar em contato com Fabrício Benevenuto, Doutor em Ciência da Computação via e-mail em <a href='mailto:fabricio@dcc.ufmg.br'> fabricio@dcc.ufmg.br </a>
-            </small>
-        </p>
-
-        <p class='row'>
-            <small>Ao clicar no botão Aceitar, você está indicando que você concorda em participar desse estudo. E se você não concorda, basta fechar esta janela.</small>
-            </p>",
+        "message" : "<p class='row'><small>Gostaríamos de convidá-lo(a) para participar do nosso estudo, que gira em torno da avaliação da transparência dos Anúncios do Facebook, bem como o nível de controle que ele fornece aos usuários.</small></p><p class='row'><small>Pedimos que você participe deste estudo porque você tem uma conta no Facebook. Sua decisão de participar neste projeto de pesquisa é voluntário. Você não precisa participar e pode se recusar a participar. Mesmo que você comece a usar nossa aplicação, pode cancelar a qualquer momento.</small></p><p class='row'><small>O risco para você, como participante, é mínimo. Nós vamos colecionar seu identificador no Facebook, os anúncios que você recebe, as explicações que o Facebook fornece para você e, periodicamente, a sua página de preferências de anúncios (<a href='https://www.facebook.com/ads/preferences'> https://www.facebook.com/ads/preferences </a>). Além disso, podemos segmentá-lo com alguns anúncios e, consequentemente, coletar suas explicações.</small></p><p class='row'><small>Nós manteremos esses dados em um servidor privado de pesquisa, e ninguém além dos membros da equipe de pesquisa pode visualizar os dados. O principal risco aqui é que você pode não querer tornar esses dados públicos (por exemplo, você pode não desejar que outros saibam quais anúncios você está recebendo). Portanto, anonimizaremos todos dos seus dados depois que o projeto for concluído e apenas arquivará dados anônimos; vamos excluir todos os dados não anônimos, uma vez que o experimento acabe. Todas as informações de identificação pessoal (nomes, IDs do Facebook, endereços de e-mail) não serão recuperáveis de nossos dados anônimos.</small></p><p class='row'><small> Se você tiver alguma dúvida sobre privacidade eletrônica, sinta-se à vontade para entrar em contato com Fabrício Benevenuto, Doutor em Ciência da Computação via e-mail em <a href='mailto:fabricio@dcc.ufmg.br'> fabricio@dcc.ufmg.br </a></small></p><p class='row'><small>Ao clicar no botão Aceitar, você está indicando que você concorda em participar desse estudo. E se você não concorda, basta fechar esta janela.</small></p>",
         "description" : "121212"
     },
     "btn_accept" : {

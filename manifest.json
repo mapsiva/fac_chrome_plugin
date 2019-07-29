@@ -3,7 +3,7 @@
   "version": "0.9.11",
   "manifest_version": 2,
   "default_locale" : "es",
-  "description": "Uma ferramenta para detecção de Anúncios com conteúdo político e notícia falsa no facebook.",
+  "description": "__MSG_appDescription__",
   "browser_action": {
     "browser_style": true,
     "default_icon": "sentinela_48.png",

@@ -3,6 +3,10 @@
         "message": "Monitor de Anuncios de Facebook",
         "description": "Monitor de Anuncios de Facebook"
     },
+    "appDescription" : {
+        "message": "Una herramienta para detectar anuncios con contenido político y noticias falsas en facebook.",
+        "description": "Una herramienta para detectar anuncios con contenido político y noticias falsas en facebook."
+    },
     "resume" : {
         "message" : "&raquo; Vista de resumen de anuncio", //Resumo dos Anúncios Visualizados
         "description" : "&raquo; Vista de resumen de anuncio"
@@ -16,42 +20,7 @@
         "description" : "&raquo; Versión"
     },
     "term":{
-        "message" : "<p class='row'>
-        <small>
-            Nos gustaría invitarlo a participar en nuestro estudio, que se centra en evaluar la transparencia de los anuncios de Facebook, así como el nivel de control que proporciona a los usuarios.
-        </small>
-        </p>
-
-        <p class='row'>
-            <small>
-            Le pedimos que participe en este estudio porque tiene una cuenta de Facebook. Su decisión de participar en este proyecto de investigación es voluntaria. Usted no tiene que participar y puede negarse a participar. Incluso si comienza a utilizar nuestra aplicación, puede cancelarla en cualquier momento.
-            </small>
-        </p>
-
-        <p class='row'>
-            <small>
-            El riesgo para usted, como participante, es mínimo. Recopilaremos su identificador en Facebook, los anuncios que reciba, las explicaciones que Facebook le proporciona y periódicamente su página de preferencias de anuncios (<a href = 'https: //www.facebook.com/ads / preferences '> https://www.facebook.com/ads/preferences </a>). Además, podemos orientarle con algunos anuncios y, por lo tanto, recopilar sus explicaciones.
-            </small>
-        </p>
-
-        <p class='row'>
-            <small>
-                Mantendremos estos datos en un servidor de búsqueda privado, y nadie más que los miembros del equipo de búsqueda podrá ver los datos. El principal riesgo aquí es que es posible que no desee hacer públicos estos datos (por ejemplo, es posible que no desee que otros sepan qué anuncios está recibiendo). Por lo tanto, anonimizaremos todos sus datos una vez que se complete el proyecto y solo archivaremos datos anónimos; vamos a eliminar todos los datos no anónimos una vez que se realiza el experimento. Toda la información de identificación personal (nombres, ID de Facebook, direcciones de correo electrónico) no será recuperable de nuestros datos anónimos.
-            </small>
-        </p>
-
-
-        <p class='row'>
-            <small> 
-            Si tiene alguna pregunta sobre la privacidad electrónica, no dude en ponerse en contacto con Fabrício Benevenuto, PhD en Informática por correo electrónico a <a href='mailto:fabricio@dcc.ufmg.br'> fabricio @ dcc.ufmg.br </a>
-            </small>
-        </p>
-
-        <p class='row'>
-            <small>
-            Al hacer clic en el botón Aceptar, está indicando que acepta participar en este estudio. Y si no está de acuerdo, simplemente cierre esta ventana.
-            </small>
-        </p>",
+        "message" : "<p class='row'><small>Nos gustaría invitarlo a participar en nuestro estudio, que se centra en evaluar la transparencia de los anuncios de Facebook, así como el nivel de control que proporciona a los usuarios. </small></p><p class='row'><small>Le pedimos que participe en este estudio porque tiene una cuenta de Facebook. Su decisión de participar en este proyecto de investigación es voluntaria. Usted no tiene que participar y puede negarse a participar. Incluso si comienza a utilizar nuestra aplicación, puede cancelarla en cualquier momento.</small></p><p class='row'><small>El riesgo para usted, como participante, es mínimo. Recopilaremos su identificador en Facebook, los anuncios que reciba, las explicaciones que Facebook le proporciona y periódicamente su página de preferencias de anuncios (<a href = 'https: //www.facebook.com/ads / preferences '> https://www.facebook.com/ads/preferences </a>). Además, podemos orientarle con algunos anuncios y, por lo tanto, recopilar sus explicaciones.</small></p><p class='row'><small>Mantendremos estos datos en un servidor de búsqueda privado, y nadie más que los miembros del equipo de búsqueda podrá ver los datos. El principal riesgo aquí es que es posible que no desee hacer públicos estos datos (por ejemplo, es posible que no desee que otros sepan qué anuncios está recibiendo). Por lo tanto, anonimizaremos todos sus datos una vez que se complete el proyecto y solo archivaremos datos anónimos; vamos a eliminar todos los datos no anónimos una vez que se realiza el experimento. Toda la información de identificación personal (nombres, ID de Facebook, direcciones de correo electrónico) no será recuperable de nuestros datos anónimos.</small></p><p class='row'><small> Si tiene alguna pregunta sobre la privacidad electrónica, no dude en ponerse en contacto con Fabrício Benevenuto, PhD en Informática por correo electrónico a <a href='mailto:fabricio@dcc.ufmg.br'> fabricio @ dcc.ufmg.br </a></small></p><p class='row'><small>Al hacer clic en el botón Aceptar, está indicando que acepta participar en este estudio. Y si no está de acuerdo, simplemente cierre esta ventana.</small></p>",
         "description" : "121212"
     },
     "not_logged":{

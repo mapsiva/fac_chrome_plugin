@@ -61,8 +61,14 @@ function checkForApiToken (){
         $('#resume').show();
         $('#loading').hide();
         var version = getPluginVersion ();
-        
-        $('#resume').attr('href', URL_DASHBOARD + '?__e=' + localStorage['_api_token'] + '&version='+ version);
+
+        lang = 'pt'
+        if(chrome)
+            lang = chrome.i18n.getUILanguage()
+        else
+            lang = browser.i18n.getUILanguage()
+
+        $('#resume').attr('href', URL_DASHBOARD + '?__e=' + localStorage['_api_token'] + '&version='+ version + '&lang='+lang);
     }
 }
 function getConsent() {
@@ -151,3 +157,4 @@ $(document).ready(function(){
         localStorage.collectPrefs=document.getElementById('collectPrefs').checked; 
     });
 });
+
