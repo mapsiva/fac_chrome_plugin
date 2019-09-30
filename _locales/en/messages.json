@@ -1,38 +1,38 @@
 {
-    "appName" : {
-        "message": "Facebook Ad Monitor",
-        "description": "Facebook Ad Monitor"
-    },
-    "appDescription" : {
-        "message": "A tool for detecting Ads with political content and fake news on facebook.",
-        "description": "A tool for detecting Ads with political content and fake news on facebook."
-    },
-    "resume" : {
-        "message" : "&raquo; Ad Summary", //Resumo dos Anúncios Visualizados
-        "description" : "&raquo; Ad Summary"
-    },
-    "collect_preferences" : {
-        "message" : "&raquo; Collect Preferences", //Coletar preferencias
-        "description" : "&raquo; Collect Preferences"
-    },
-    "version" : {
-        "message" : "&raquo; Version", //Versão
-        "description" : "&raquo; Version"
-    },
-    "term":{
-        "message" : "<p class='row'><small>We would like to invite you to participate in our study, which revolves around assessing the transparency of Facebook Ads, as well as the level of control it provides to users.</small></p><p class='row'><small>We ask that you participate in this study because you have a Facebook account. Your decision to participate in this research project is voluntary. You do not have to participate and you may refuse to participate. Even if you start using our app, you can cancel at any time.</small></p><p class='row'><small>The risk to you, as a participant, is minimal. We will collect your identifier on Facebook, the ads you receive, the explanations that Facebook provides for you, and periodically your ad preferences page (<a href = 'https: //www.facebook.com/ads / preferences'> https://www.facebook.com/ads/preferences </a>). In addition, we can target you with a few ads and therefore collect your explanations.</small></p><p class='row'><small>We will keep this data on a private search server, and no one other than the members of the search team can view the data. The main risk here is that you may not want to make this data public (for example, you may not want others to know which ads you are receiving). Therefore, we will anonymize all of your data after the project is completed and will only archive anonymous data; let's delete all non-anonymous data once the experiment is done. All personally identifiable information (names, Facebook IDs, e-mail addresses) will not be retrievable from our anonymous data.</small></p><p class='row'><small> If you have any questions about electronic privacy, feel free to contact Fabrício Benevenuto, PhD in Computer Science via email at <a href='mailto:fabricio@dcc.ufmg.br'> fabricio @ dcc.ufmg.br </a></small></p><p class='row'><small>By clicking the Accept button, you are indicating that you agree to participate in this study. And if you do not agree, just close this window.</small></p>",
-        "description" : "121212"
-    },
-    "not_logged":{
-        "message" : "<p><strong>Oops!</strong> If you are not logged in to Facebook, Facebook Ads Monitor does not work. </ p> <p> If you are already logged in to Facebook, just wait a moment to start.</p>",
-        "description" : ""
-    },
-    "btn_accept" : {
-        "message" : "<span class='glyphicon glyphicon-ok'></span> I Agree", //Versão
-        "description" : "<span class='glyphicon glyphicon-ok'></span> I Agree"
-    },
-    "wait" : {
-        "message" : "<h4> Please wait a moment ... </h4> <span> Let's start in a moment. </span>",
-        "description" : ""
-    }
+  "appName": {
+    "message": "Eleições Sem Fake",
+    "description": "Eleições sem Fake"
+  },
+  "appDescription": {
+    "message": "A tool for detecting Ads with political content and fake news on facebook.",
+    "description": "A tool for detecting Ads with political content and fake news on facebook."
+  },
+  "resume": {
+    "message": "&raquo; Ad Summary", //Resumo dos Anúncios Visualizados
+    "description": "&raquo; Ad Summary"
+  },
+  "collect_preferences": {
+    "message": "&raquo; Collect Preferences", //Coletar preferencias
+    "description": "&raquo; Collect Preferences"
+  },
+  "version": {
+    "message": "&raquo; Version", //Versão
+    "description": "&raquo; Version"
+  },
+  "term": {
+    "message": "<p class='row'><small>We would like to invite you to participate in our study, which revolves around assessing the transparency of Facebook Ads, as well as the level of control it provides to users.</small></p><p class='row'><small>We ask that you participate in this study because you have a Facebook account. Your decision to participate in this research project is voluntary. You do not have to participate and you may refuse to participate. Even if you start using our app, you can cancel at any time.</small></p><p class='row'><small>The risk to you, as a participant, is minimal. We will collect your identifier on Facebook, the ads you receive, the explanations that Facebook provides for you, and periodically your ad preferences page (<a href = 'https: //www.facebook.com/ads / preferences'> https://www.facebook.com/ads/preferences </a>). In addition, we can target you with a few ads and therefore collect your explanations.</small></p><p class='row'><small>We will keep this data on a private search server, and no one other than the members of the search team can view the data. The main risk here is that you may not want to make this data public (for example, you may not want others to know which ads you are receiving). Therefore, we will anonymize all of your data after the project is completed and will only archive anonymous data; let's delete all non-anonymous data once the experiment is done. All personally identifiable information (names, Facebook IDs, e-mail addresses) will not be retrievable from our anonymous data.</small></p><p class='row'><small> If you have any questions about electronic privacy, feel free to contact Fabrício Benevenuto, PhD in Computer Science via email at <a href='mailto:fabricio@dcc.ufmg.br'> fabricio @ dcc.ufmg.br </a></small></p><p class='row'><small>By clicking the Accept button, you are indicating that you agree to participate in this study. And if you do not agree, just close this window.</small></p>",
+    "description": "121212"
+  },
+  "not_logged": {
+    "message": "<p><strong>Oops!</strong> If you are not logged in to Facebook, Facebook Ads Monitor does not work. </ p> <p> If you are already logged in to Facebook, just wait a moment to start.</p>",
+    "description": ""
+  },
+  "btn_accept": {
+    "message": "<span class='glyphicon glyphicon-ok'></span> I Agree", //Versão
+    "description": "<span class='glyphicon glyphicon-ok'></span> I Agree"
+  },
+  "wait": {
+    "message": "<h4> Please wait a moment ... </h4> <span> Let's start in a moment. </span>",
+    "description": ""
+  }
 }

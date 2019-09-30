@@ -1,23 +1,53 @@
 {
   "name": "__MSG_appName__",
-  "version": "0.9.11",
+  "version": "0.9.13",
   "manifest_version": 2,
-  "default_locale" : "es",
+  "default_locale": "pt_BR",
   "description": "__MSG_appDescription__",
   "browser_action": {
     "browser_style": true,
     "default_icon": "sentinela_48.png",
-      "default_popup":"popup.html"
+    "default_popup": "popup.html"
   },
   "background": {
-    "scripts": ["jquery-3.1.1.min.js","adCollectionUtils.js","background.js"]
+    "scripts": ["jquery-3.1.1.min.js", "adCollectionUtils.js", "background.js"]
   },
   "icons": {
-     "16": "sentinela_16.png",
-     "48": "sentinela_48.png"
+    "16": "sentinela_16.png",
+    "48": "sentinela_48.png"
   },
-"content_scripts": [{"run_at": "document_end", "js": ["jquery-3.1.1.min.js","loading.js","adCollectionUtils.js","adgrabber.js"], "matches": ["http://www.facebook.com/*","https://www.facebook.com/*"]},{"run_at": "document_start", "js": ["preferencesGrabber.js"], "matches": ["http://www.facebook.com/ads/preferences*","https://www.facebook.com/ads/preferences*"]}],
-  "permissions": ["http://www.facebook.com/*","https://www.facebook.com/*", "webRequest", "webRequestBlocking", "storage", "http://sentinela.local/*", "https://adanalyst-br.mpi-sws.org/*"],
+  "content_scripts": [
+    {
+      "run_at": "document_end",
+      "js": [
+        "jquery-3.1.1.min.js",
+        "loading.js",
+        "adCollectionUtils.js",
+        "adgrabber.js"
+      ],
+      "matches": ["http://www.facebook.com/*", "https://www.facebook.com/*"]
+    },
+    {
+      "run_at": "document_start",
+      "js": ["preferencesGrabber.js"],
+      "matches": [
+        "http://www.facebook.com/ads/preferences*",
+        "https://www.facebook.com/ads/preferences*"
+      ]
+    }
+  ],
+  "permissions": [
+    "http://www.facebook.com/*",
+    "https://www.facebook.com/*",
+    "webRequest",
+    "webRequestBlocking",
+    "storage",
+    "http://sentinela.local/*",
+    "https://adanalyst-br.mpi-sws.org/*"
+  ],
   "incognito": "spanning",
- "web_accessible_resources": [ "xhrOverloadPreferences.js","xhrOverloadButtons.js" ]
+  "web_accessible_resources": [
+    "xhrOverloadPreferences.js",
+    "xhrOverloadButtons.js"
+  ]
 }
